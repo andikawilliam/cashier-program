@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cashier Program</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="index.js"></script>
+</head>
+
+<body>
+
+<h1>Cashier Program</h1>
+
+    <!--Form-->
+    
+<div class="container">
+  <div class="row">
+    <div class="col" style="padding-right:20px; border-right: 1px solid #ccc;">
+    	<h2>Add manually</h2>
+    	<p>Add products manually with their respective prices</p>
+
+    	<div class='form-group'>
+    		<label for="formGroupExampleInput">Product</label>
+    		<input id='a_product' type='text' class="form-control" id="formGroupExampleInput" placeholder="Pisang"><br>
+    	</div>
+
+    	<div class='form-group'>
+    		<label for="formGroupExampleInput2">Quantity</label>
+    		<input id='a_quantity' type='number' class="form-control" id="formGroupExampleInput2" value=1><br>
+    	</div>
+
+    	<div class='form-group'>
+    		<label for="formGroupExampleInput3">Price</label>
+			<div class="input-group mb-2 mr-sm-2">
+		    	<div class="input-group-prepend">
+		     		<div class="input-group-text">Rp.</div>
+		    	</div>
+    			<input id='a_price' type='number' class="form-control" id="formGroupExampleInput3" placeholder=5000>
+    		</div>
+    	</div>	
+    		
+    	<button onclick='addItem()' type='button' class='btn btn-success'>Add item</button>
+    </div>
+
+    <div class="col">
+    	<h2>Select Product</h2>
+    	<p>Select the product from the available selection</p>
+
+    	<div class='form-group'>
+    		<label for="formGroupExampleInput">Product</label>
+    		
+    		<select class="custom-select" id="s_product" onchange="setPrice(value)">
+			  <option value="Pisang">Pisang</option>
+			  <option value="Jeruk">Jeruk</option>
+			  <option value="Duren">Duren</option>
+			  <option value="Nangka">Nangka</option>
+			  <option value="Salak">Salak</option>
+			  <option value="Apel">Apel</option>
+			  <option value="Semangka">Semangka</option>
+			  <option value="Alpukat">Alpukat</option>
+			  <option value="Melon">Melon</option>
+
+			</select>
+    	</div>
+
+    	<div class='form-group'>
+    		<label for="formGroupExampleInput2">Quantity</label>
+    		<input id='s_quantity' type='number' class="form-control" id="formGroupExampleInput2" value=1><br>
+    	</div>
+
+    	<div class='form-group'>
+    		<label for="formGroupExampleInput3">Price</label>
+			<div class="input-group mb-2 mr-sm-2">
+		    	<div class="input-group-prepend">
+		     		<div class="input-group-text">Rp.</div>
+		    	</div>
+    			<input id='s_price' type='number' class="form-control" id="formGroupExampleInput3" placeholder="5000"><br>
+    		</div>
+    	</div>	
+    		
+    	<button onclick='selectItem()' type='button' class='btn btn-success'>Add item</button>
+    </div>
+ </div>
+
+<hr>
+  <div class="row">
+	<div class="col" style="padding-right:20px; border-right: 1px solid #ccc;">
+		<h2>Cart</h2>
+		<div id='cart'></div>
+	
+	</div>
+
+	<div class="col">
+		<h2>Checkout</h2>
+		<div id='checkout'>
+		
+		<form>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Total</label>
+		    <div class="col-sm-10">
+		    	<div class="input-group mb-2 mr-sm-2">
+			    	<div class="input-group-prepend">
+			     		<div class="input-group-text">Rp.</div>
+			    	</div>
+	    			<input type="number" class="form-control" id="total" value=5000>
+    			</div>   
+		    </div>
+		  </div>
+
+		  <div class="form-group row">
+		    <label for="inputPassword3" class="col-sm-2 col-form-label">Kode Promo</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="discount" placeholder="XXXXX" onchange="promo()" aria-describedby="promoDesc">
+		      <small id="promoDesc" class="form-text text-muted">
+		      	Insert code to earn 20% discount
+			  </small>
+		    </div>
+		  </div>
+
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Final Price</label>
+		    <div class="col-sm-10">
+		    	<div class="input-group mb-2 mr-sm-2">
+			    	<div class="input-group-prepend">
+			     		<div class="input-group-text">Rp.</div>
+			    	</div>
+	    			<input type="number" class="form-control" id="final" value=5000>
+    			</div>   
+		      
+		    </div>
+		  </div>
+		  
+
+		  <div class="form-group row">
+		    <label for="inputPassword3" class="col-sm-2 col-form-label">Cash</label>
+		    <div class="col-sm-10">
+		    	<div class="input-group mb-2 mr-sm-2">
+			    	<div class="input-group-prepend">
+			     		<div class="input-group-text">Rp.</div>
+			    	</div>
+	    			<input type="number" class="form-control" id="cash" placeholder=10000 onchange="calc_exchange()">
+    			</div>   
+		    </div>
+		  </div>
+
+		  <div class="form-group row">
+		    <label for="inputPassword3" class="col-sm-2 col-form-label">Exchange</label>
+		    <div class="col-sm-10">
+		    	<div class="input-group mb-2 mr-sm-2">
+			    	<div class="input-group-prepend">
+			     		<div class="input-group-text">Rp.</div>
+			    	</div>
+	    			<input type="number" class="form-control" id="exchange" placeholder=5000>
+    			</div>   
+		    </div>
+		  </div>
+
+		</form>
+
+
+		</div>
+	
+	</div>
+  </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
