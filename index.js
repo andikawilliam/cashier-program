@@ -4,18 +4,7 @@ iquantity = []
 iprice = []
 
 
-listPrice = [6000, 8500, 25000, 3000, 2500, 9000, 23000, 14000, 12000]
-listProduct = ['Pisang', 'Jeruk', 'Duren', 'Nangka', 'Salak', 'Apel', 'Semangka', 'Alpukat', 'Melon']
 
-// [0] Pisang    : 6000
-// [1] Jeruk     : 8500
-// [2] Duren     : 25000
-// [3] Nangka    : 3000
-// [4] Salak     : 2500
-// [5] Apel      : 9000
-// [6] Semangka  : 23000
-// [7] Alpukat   : 14000
-// [8] Melon     : 12000
 
 
 function addItem(){
@@ -39,16 +28,51 @@ function selectItem(){
 }
 
 function setPrice(value) {
+
+// [0] Pisang    : 6000
+// [1] Jeruk     : 8500
+// [2] Duren     : 25000
+// [3] Nangka    : 3000
+// [4] Salak     : 2500
+// [5] Apel      : 9000
+// [6] Semangka  : 23000
+// [7] Alpukat   : 14000
+// [8] Melon     : 12000
   fruitname = value
 
-  for (i=0; i<listProduct; i++){
-    if(listProduct[i] === fruitname){
-      j = i
-    }
+switch(fruitname) {
+    case "Pisang":
+        price = 6000
+        break;
+    case "Jeruk":
+        price = 8500
+        break;
+    case "Duren":
+        price = 25000
+        break;
+    case "Nangka":
+        price = 3000
+        break;
+    case "Salak":
+        price = 2500
+        break;
+    case "Apel":
+        price = 9000
+        break;
+    case "Semangka":
+        price = 23000
+        break;
+    case "Alpukat":
+        price = 14000
+        break;
+    case "Melon":
+        price = 12000
+        break;
+    default:
+        t
+
   }
 
-
-  price = listPrice[j]
   document.getElementById('s_price').value = price
 }
 
